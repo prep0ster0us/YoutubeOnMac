@@ -33,6 +33,14 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
+                                
+                // Toggle between Dark and Light mode
+                ThemeToggleView(isDarkMode: $webViewModel.isDarkMode)
+                    .onChange(of: webViewModel.isDarkMode) { _,_ in
+                        webViewModel.toggleTheme()
+                    }
+
+                Spacer()
                 Button(action: { webViewModel.reload() }) {
                     HStack {
                         Text("Refresh")
