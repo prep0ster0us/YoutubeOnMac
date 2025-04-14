@@ -9,14 +9,12 @@ import SwiftUI
 import WebKit
 
 struct ContentView: View {
+    
+    let youtubeURL = URL(string: "https://www.youtube.com")!
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        WebView(url: youtubeURL)
+                    .frame(minWidth: 800, minHeight: 600)
     }
 }
 
