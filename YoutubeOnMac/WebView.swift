@@ -56,6 +56,22 @@ struct WebView: NSViewRepresentable {
                 } else {
                     print("Initial load complete, \(self.stateModel.isDarkMode ? "Dark" : "Light") theme applied")
                     self.hasAppliedTheme = true
+                    
+                    /* ---------------------------------------- */
+                    // VOLUME CONTROL
+                    // Inject initial volume
+                    let volume = self.stateModel.volume
+                    let volumeJS = """
+                    (function() {
+                        var video = document.querySelector('video');
+                        if (video) {
+                            video.volume = \(volume);
+                        }
+                    })();
+                    """
+                    webView.evaluateJavaScript(volumeJS)
+                    /* ---------------------------------------- */
+                    
                     webView.reload()
                 }
             }
